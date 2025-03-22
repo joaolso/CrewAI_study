@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from crewai_tools import SerperDevTool, ScrapeWebsiteTool
+from crewai_tools import SerperDevTool, ScraperWebsiteTool
 from crewai import Agent, Task, Crew
 from datetime import date
 
@@ -11,7 +11,7 @@ SERPER_API_KEY = os.getenv("SERPER_API_KEY")
 
 # Ferramentas
 search_tool = SerperDevTool()
-scrape_tool = ScrapeWebsiteTool()
+scrape_tool = ScraperWebsiteTool()
 
 # Agentes
 buscador = Agent(
@@ -105,9 +105,11 @@ markdown_output = f"""
 
 print(markdown_output)
 
-# Exportar resultado para arquivo markdown
+# Exportar resultado para arquivo markdown na pasta posts/
 today = date.today().isoformat()
-filename = f"result-data-{today}.md"
+os.makedirs("posts", exist_ok=True)
+filename = f"posts/result-data-{today}.md"
+
 with open(filename, "w", encoding="utf-8") as f:
     f.write(markdown_output)
 
