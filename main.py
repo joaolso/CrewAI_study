@@ -13,6 +13,10 @@ SERPER_API_KEY = os.getenv("SERPER_API_KEY")
 search_tool = SerperDevTool()
 scrape_tool = ScraperWebsiteTool()
 
+# Theme
+theme = "Nova profissão: Engenheiro de IA"
+input_dict = {"tema": theme}
+
 # Agentes
 buscador = Agent(
     role="Buscador de Conteúdo",
@@ -91,9 +95,6 @@ equipe = Crew(
 )
 
 # Execução
-tema = "Nova profissão: Engenheiro de IA"
-input_dict = {"tema": tema}
-
 result = equipe.kickoff(inputs=input_dict)
 
 # Exibir resultado em Markdown
